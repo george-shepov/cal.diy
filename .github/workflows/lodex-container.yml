@@ -101,4 +101,6 @@ jobs:
 
       - name: Cleanup build database
         if: always()
-        run: docker compose down
+        run: |
+          docker rm -f database >/dev/null 2>&1 || true
+          docker network rm stack >/dev/null 2>&1 || true
